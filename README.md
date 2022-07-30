@@ -2,7 +2,7 @@
 Script created for easy compilation of the NXLog CE source package
 
 ## Usage
-Add your source package for NXLog CE onto this folder, run the
+Add the source package for NXLog CE to this folder, run the
 script by using `./nxlog-ce-installer.sh` and the process will
 begin.
 
@@ -18,3 +18,9 @@ file is only intended to help you get up and running faster.
 For more information on how to configure the file refer to the
 documentation at `https://docs.nxlog.co/userguide/index.html`
 under the NXLog Community Edition Reference Manual.
+
+At the time this script is compatible with Debian, Ubuntu, its
+derivates and Alpine. RHEL based systems have not been
+added but will be in the future.
+
+The compilation has worked in x86_64 and ARM based systems.
