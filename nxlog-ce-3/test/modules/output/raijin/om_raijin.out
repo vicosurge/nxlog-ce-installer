@@ -1,0 +1,9 @@
+POST /nxlogDB/logsTable HTTP/1.1
+User-Agent: nxlog-ce
+Host: 127.0.0.1:8888
+Content-Type: application/json; charset=utf-8
+Connection: Keep-Alive
+Keep-Alive: 300
+Content-Length: 43
+
+{"new_event":"raw_event has been deleted"}

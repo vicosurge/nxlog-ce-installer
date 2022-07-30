@@ -1,0 +1,77 @@
+:module: im_udp
+[[im_udp]]
+[desc="Accepts log data via UDP datagrams"]
+==== UDP (im_udp)
+
+This module accepts UDP datagrams on the configured address and
+port. UDP is the transport protocol of the legacy BSD Syslog as
+described in RFC 3164, so this module can be particularly useful to
+receive such messages from older devices which do not support other
+transports.
+
+WARNING: UDP is an unreliable transport protocol, and does not guarantee
+         delivery. Messages may not be received or may be truncated. It is
+         recommended to use the <<im_tcp,TCP>> or <<im_ssl,SSL>> transport
+         modules instead, if possible.
+
+To reduce the likelihood of message loss, consider:
+
+* increasing the socket buffer size with <<im_udp_config_sockbufsize>>,
+* raising the route priority by setting the <<config_route_priority>>
+  directive (to a low number such as 1), and
+* adding a <<pm_buffer>> instance.
+
+NOTE: This module provides no access control. Firewall rules can be
+      used to drop log events from certain hosts.
+
+For parsing Syslog messages, see the <<pm_transformer,pm_transformer>>
+module or the <<xm_syslog_proc_to_syslog_bsd,parse_syslog_bsd()>>
+procedure of <<xm_syslog,xm_syslog>>.
+
+include::../see_modules_by_pkg.adoc[]
+
+[[im_udp_config]]
+===== Configuration
+
+The _im_udp_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[im_udp_config_host]]
+Host:: The module will accept messages on this IP address or DNS
+  hostname. The default is `localhost`.
+
+[[im_udp_config_port]]
+Port:: The module will listen for incoming connections on this port
+  number. The default is port 514.
+
+'''
+
+[[im_udp_config_sockbufsize,SockBufSize]]
+SockBufSize:: This optional directive sets the socket buffer size
+  (SO_RCVBUF) to the value specified. If not set, the operating system
+  defaults are used. If UDP packet loss is occurring at the kernel
+  level, setting this to a high value (such as `150000000`) may
+  help. On Windows systems the default socket buffer size is extremely
+  low, and using this option is highly recommended.
+
+[[im_udp_config_recvmmsg]]
+UseRecvmmsg:: This boolean directive specifies that the `recvmmsg()` system
+  call should be used, if available, to receive multiple messages per
+  call to improve performance. The default is TRUE.
+
+include::../../fields-im_udp.adoc[]
+
+[[im_udp_config_examples]]
+===== Examples
+
+.Using the im_udp Module
+====
+This configuration accepts log messages via UDP and writes them to
+file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_udp.conf[lines=2..-1]
+----
+====

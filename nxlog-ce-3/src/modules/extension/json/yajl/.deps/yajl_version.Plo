@@ -1,0 +1,7 @@
+yajl_version.lo: yajl_version.c /usr/include/stdc-predef.h \
+ api/yajl_version.h api/yajl_common.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h
+/usr/include/stdc-predef.h:
+api/yajl_version.h:
+api/yajl_common.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:

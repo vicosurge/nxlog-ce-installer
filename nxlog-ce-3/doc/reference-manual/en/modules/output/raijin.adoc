@@ -1,0 +1,168 @@
+:module: om_raijin
+[[om_raijin]]
+[desc="Sends logs to Raijin server"]
+==== Raijin (om_raijin)
+
+This module allows logs to be stored in a Raijin server. It will
+connect to the <<om_raijin_config_url,URL>> specified in the
+configuration in either plain HTTP or HTTPS mode. Raijin accepts
+HTTP POST requests with multiple JSON records in the request body,
+assuming that there is a target database table already created on the
+Raijin side. Note that Raijin only suports flat JSON (i.e. a list of
+key-value pairs) and does not accept nested data structures such as
+arrays and maps. Raijin currently does not support authorization/SSL but
+the _om_raijin_ module supports TLS since TLS can be enabled with an
+HTTP proxy. For more information, see http://raijindb.com/[Raijin website].
+
+NOTE: This module requires the _xm_json_ extension module to be loaded
+      in order to convert the payload to JSON. If the `$raw_event`
+      field is empty the fields will be automatically converted to JSON.
+      If `$raw_event` contains a valid JSON string it will be sent as-is,
+      otherwise a JSON record will be generated in the following structure:
+      `{ "raw_event": "escaped raw_event content" }`
+      
+
+include::../see_modules_by_pkg.adoc[]
+
+
+[[om_raijin_config]]
+===== Configuration
+
+The _om_raijin_ module accepts the following directives in
+addition to the <<config_module_common,common module directives>>.
+The <<om_raijin_config_url,URL>> directive is required.
+
+[[om_raijin_config_dbname]]
+DBName:: This mandatory directive specifies the database name to insert 
+  data into.
+
+[[om_raijin_config_dbtable]]
+DBTable:: This mandatory directive specifies the database table to insert 
+  data into.
+
+[[om_raijin_config_url]]
+URL:: This mandatory directive specifies the URL where the module
+  should POST the event data. The URL also indicates whether to
+  operate in plain HTTP or HTTPS mode. If the port number is not
+  explicitly indicated, it defaults to port 80 for HTTP and port 443 for
+  HTTPS. The URL should point to the endpoint, otherwise
+  Raijin will return _400 Bad Request_.
+
+'''
+
+[[om_raijin_config_flushinterval]]
+FlushInterval:: The module will send an `INSERT` command to the
+  defined endpoint after this amount of time in seconds, unless
+  <<om_raijin_config_flushlimit,FlushLimit>> is reached
+  first. This defaults to 5 seconds.
+
+[[om_raijin_config_flushlimit]]
+FlushLimit:: When the number of events in the output buffer reaches
+  the value specified by this directive, the module will send an `INSERT`
+  command to the endpoint defined in
+  <<om_raijin_config_url,URL>>. This defaults to 500 events. The
+  <<om_raijin_config_flushinterval,FlushInterval>> directive
+  may trigger sending the `INSERT` request before this limit is
+  reached if the log volume is low to ensure that data is promptly
+  sent.
+
+[[om_raijin_config_httpsallowuntrusted]]
+HTTPSAllowUntrusted:: This boolean directive specifies that the remote
+  connection should be allowed without certificate verification. If
+  set to TRUE, the connection will be allowed even if the remote HTTPS
+  server presents an unknown or self-signed certificate. The default
+  value is FALSE: the remote HTTPS server must present a trusted
+  certificate.
+
+[[om_raijin_config_httpscadir]]
+HTTPSCADir:: This specifies the path to a directory containing
+  certificate authority (CA) certificates, which will be used to check
+  the certificate of the remote HTTPS server. The certificate
+  filenames in this directory must be in the OpenSSL hashed format.
+  A remote's self-signed certificate (which is not signed by a CA) can also
+  be trusted by including a copy of the certificate in this directory.
+
+
+[[om_raijin_config_httpscafile]]
+HTTPSCAFile:: This specifies the path of the certificate authority
+  (CA) certificate, which will be used to check the certificate of the
+  remote HTTPS server.
+  To trust a self-signed certificate presented by the remote (which is not
+  signed by a CA), provide that certificate instead.
+
+[[om_raijin_config_httpscertfile]]
+HTTPSCertFile:: This specifies the path of the certificate file to be
+  used for the HTTPS handshake.
+
+[[om_raijin_config_httpscertkeyfile]]
+HTTPSCertKeyFile:: This specifies the path of the certificate key file
+  to be used for the HTTPS handshake.
+
+[[om_raijin_config_httpscrldir]]
+HTTPSCRLDir:: This specifies the path to a directory containing
+  certificate revocation lists (CRLs), which will be consulted when
+  checking the certificate of the remote HTTPS server. The certificate
+  filenames in this directory must be in the OpenSSL hashed format.
+
+[[om_raijin_config_httpscrlfile]]
+HTTPSCRLFile:: This specifies the path of the certificate revocation
+  list (CRL) which will be consulted when checking the certificate of
+  the remote HTTPS server.
+
+[[om_raijin_config_httpskeypass]]
+HTTPSKeyPass:: With this directive, a password can be supplied for the
+  certificate key file defined in
+  <<om_raijin_config_httpscertkeyfile,HTTPSCertKeyFile>>. This
+  directive is not needed for passwordless private keys.
+
+[[om_raijin_config_sni]]
+SNI:: This optional directive specifies the host name used for Server
+  Name Indication (SNI) in HTTPS mode.
+
+[[om_raijin_config_sslcipher]]
+SSLCipher:: This optional directive can be used to set the permitted SSL
+  cipher list, overriding the default. Use the format described in the
+  link:https://www.openssl.org/docs/manmaster/man1/ciphers.html[ciphers(1ssl)]
+  man page.
+
+include::../../common/sslprotocol.adoc[]
+
+[[om_raijin_config_proxyaddress]]
+ProxyAddress:: This optional directive is used to specify the IP address of the
+  proxy server in case the module should connect to the Raijin server
+  through a proxy.
++
+--
+NOTE: The _om_raijin_ module supports HTTP proxying only. SOCKS4/SOCKS5 proxying
+      is not supported.
+--
+
+[[om_raijin_config_proxyport]]
+  ProxyPort:: This optional directive is used to specify the port number required
+    to connect to the proxy server.
+
+[[om_raijin_config_sslcompression]]
+SSLCompression:: This boolean directive allows you to enable data compression
+  when sending data over the network. The compression mechanism is based on the
+  zlib compression library. If the directive is not specified, it defaults to
+  FALSE (the compression is disabled).
++
+NOTE: Some Linux packages (for example, Debian) use the OpenSSL library provided
+  by the OS and may not support the zlib compression mechanism. The module will
+  emit a warning on startup if the compression support is missing. The generic
+  deb/rpm packages are bundled with a zlib-enabled libssl library.
+
+[[om_raijin_config_examples]]
+===== Examples
+
+.Sending Logs to a Raijin Server
+====
+This configuration reads log messages from file and forwards them to
+the Raijin server on localhost.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_raijin.conf[tag=manual_include]
+----
+====

@@ -1,0 +1,51 @@
+[[xm_grok_funcs]]
+===== Functions
+
+The following functions are exported by _xm_grok_.
+
+[[xm_grok_func_match_grok]]
+<<lang_type_boolean,boolean>> `match_grok(<<lang_type_string,string>> pattern)`::
++
+--
+
+Execute the <<xm_grok_proc_match_grok,match_grok()>>
+procedure with the specified _pattern_ on the `$raw_event` field. If
+the event is successfully matched, return TRUE, otherwise FALSE.
+    
+--
+
+<<lang_type_boolean,boolean>> `match_grok(<<lang_type_string,string>> field, <<lang_type_string,string>> pattern)`::
++
+--
+
+Execute the <<xm_grok_proc_match_grok,match_grok()>>
+procedure with the specified _pattern_ on the specified _field_. If
+the event is successfully matched, return TRUE, otherwise FALSE.
+    
+--
+
+
+[[xm_grok_procs]]
+===== Procedures
+
+The following procedures are exported by _xm_grok_.
+
+[[xm_grok_proc_match_grok]]
+`match_grok(<<lang_type_string,string>> pattern);`::
++
+--
+
+Attempt to match and parse the `$raw_event` field of the current event
+with the specified _pattern_.
+     
+--
+
+`match_grok(<<lang_type_string,string>> field, <<lang_type_string,string>> pattern);`::
++
+--
+
+Attempt to match and parse the _field_ of the current event with the
+specified _pattern_.
+    
+--
+

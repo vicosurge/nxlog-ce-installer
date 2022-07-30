@@ -1,0 +1,22 @@
+[[man-pages]]
+[multipage-level=2]
+[desc="System manual pages for {productName} and related utilities"]
+= Man Pages
+
+[[nxlog-8]]
+[desc="The manual page for the main {productName} agent"]
+== nxlog(8)
+
+[manpage]
+--
+include::man_nxlog.adoc[tag=manual_include, leveloffset=+1]
+--
+
+[[nxlog-processor-8]]
+[desc="The manual page for the {productName} offline processor"]
+== nxlog-processor(8)
+
+[manpage]
+--
+include::man_nxlog-processor.adoc[tag=manual_include, leveloffset=+1]
+--

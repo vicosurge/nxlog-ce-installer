@@ -1,0 +1,66 @@
+    #!/bin/sh
+
+set -e
+
+case "$1" in
+	configure)
+	systemctl daemon-reload
+	addgroup --system --quiet nxlog || true
+	if [ -z "`getent passwd nxlog`" ]; then
+		adduser --quiet --system --no-create-home \
+		--disabled-password --disabled-login \
+		--shell /bin/false --group \
+		--gecos "nxlog user" \
+		--home /opt/nxlog nxlog
+		adduser --quiet nxlog nxlog
+	fi
+	if ! [ -d /etc/nxlog/nxlog.d ]; then
+		mkdir -p /etc/nxlog/nxlog.d
+	fi
+	chmod 0770 /etc/nxlog/nxlog.d
+	chown -R nxlog:nxlog /etc/nxlog/nxlog.d
+
+	if ! [ -d /run/nxlog ]; then
+		mkdir -p /run/nxlog
+	fi
+	chown nxlog:nxlog /run/nxlog
+	chmod 1770 /run/nxlog
+
+	if ! [ -d /var/lib/nxlog ]; then
+		mkdir -p /var/lib/nxlog
+	fi
+	chown nxlog:nxlog /var/lib/nxlog
+	chmod 0770 /var/lib/nxlog
+
+	if ! [ -d /var/spool/nxlog ]; then
+		mkdir -p /var/spool/nxlog
+	fi
+	chown nxlog:nxlog /var/spool/nxlog
+	chmod 0770 /var/spool/nxlog
+
+	if ! [ -d /var/log/nxlog ]; then
+		mkdir -p /var/log/nxlog
+	fi
+	chown nxlog:nxlog /var/log/nxlog
+	chmod 0770 /var/log/nxlog
+
+	chown -R nxlog:nxlog /var/lib/nxlog
+
+	systemctl enable nxlog
+	systemctl start nxlog
+
+	;;
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+	;;
+
+	*)
+
+	echo "postinst called with unknown argument \`$1'" >&2
+	exit 1
+	;;
+esac
+
+#DEBHELPER#
+
+exit 0

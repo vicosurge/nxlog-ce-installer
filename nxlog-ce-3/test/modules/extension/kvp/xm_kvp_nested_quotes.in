@@ -1,0 +1,5 @@
+key1:"value " value" key2:""value""
+key1:"value " val\:ue" key2:""value""
+key1="value ", val\=ue", key2=""value""
+app_name=HealthCheck, app_instance_id=575d6eb0716c4a5b8f785ddc21022d8d, event=CheckCompleted, check=DNS, Parameters="Query=example.com; Timeout=2000 ms", run_id=1, result=Success, processing_time=1094, text="OK, resolved "example.com" to 10.1.2.20, 10.1.2.14"
+text="OK, resolved "example.com" to 10.1.2.20, 10.1.2.14", app_name=HealthCheck, app_instance_id=575d6eb0716c4a5b8f785ddc21022d8d, event=CheckCompleted, check=DNS, Parameters="Query=example.com; Timeout=2000 ms", run_id=1, result=Success, processing_time=1094

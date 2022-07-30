@@ -1,0 +1,10 @@
+REMOVE: tmp/om_raijin.in
+REMOVE: tmp/output
+
+STARTDAEMON: modules/output/raijin/om_raijin.conf
+SLEEP: 9
+STOPDAEMON: modules/output/raijin/om_raijin.conf
+COMPAREFILE: tmp/output modules/output/raijin/om_raijin.out
+
+REMOVE: tmp/om_raijin.in
+REMOVE: tmp/output

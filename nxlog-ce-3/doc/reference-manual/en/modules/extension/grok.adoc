@@ -1,0 +1,51 @@
+:module: xm_grok
+[[xm_grok]]
+[desc="Supports the use of Grok patterns for parsing events"]
+==== Grok (xm_grok)
+
+This module supports parsing events with Grok patterns. A field is added to
+the event record for each pattern semantic. For more information about Grok,
+see the
+link:https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html[Logstash
+Grok filter plugin] documentation.
+
+include::../see_modules_by_pkg.adoc[]
+
+[[xm_grok_config]]
+===== Configuration
+
+The _xm_grok_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[xm_grok_config_pattern]]
+Pattern:: This mandatory directive specifies a directory or file containing
+  Grok patterns. Wildcards may be used to specify multiple directories or
+  files. This directive may be used more than once.
+
+include::../../apidoc-xm_grok.adoc[]
+
+[[xm_grok_config_examples]]
+===== Examples
+
+[[xm_grok_example1]]
+.Using Grok Patterns for Parsing
+====
+This configuration reads Syslog events from file and parses them with the
+<<xm_syslog_proc_parse_syslog,parse_syslog()>> procedure (this sets the
+<<xm_syslog_field_Message,$Message>> field). Then the
+<<xm_grok_func_match_grok,match_grok()>> function is used to attempt a series
+of matches on the `$Message` field until one is successful. If no patterns
+match, an internal message is logged.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../../../test/modules/extension/grok/xm_grok2.conf[tag=manual_include]
+----
+
+.patterns2.txt
+[source,grok]
+----
+include::../../../../../test/modules/extension/grok/patterns2.txt[]
+----
+====

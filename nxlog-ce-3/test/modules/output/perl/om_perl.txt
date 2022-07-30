@@ -1,0 +1,7 @@
+REMOVE: tmp/output
+REMOVE: tmp/input
+STARTDAEMON: modules/output/perl/om_perl.conf
+SLEEP: 0.5
+STOPDAEMON: modules/output/perl/om_perl.conf
+COMPAREFILE: tmp/output modules/output/perl/test.log
+REMOVE: tmp/output

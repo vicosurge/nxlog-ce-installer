@@ -1,0 +1,67 @@
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=11acc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12348 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=200ac40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12349 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1bd5c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12350 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=d7ac40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12351 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=908c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12352 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=243fc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12353 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1770c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12354 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=21c9c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12355 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1190c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12356 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=13e5c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12357 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=17b3c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12358 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=160cc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12359 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=a00c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12360 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1959c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12361 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=2418c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12362 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=133ec40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12363 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=22cdc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12364 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=e0fc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12365 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=d0fc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12366 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=248fc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12367 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1babc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12368 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1212c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12369 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1b7fc40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12370 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1ab3c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12371 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1656c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12372 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=22c7c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12373 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1912c40 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=12374 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=b4f360 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=14846 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test/" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1724360 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=14854 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test/" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=1b04360 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=14871 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test/" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=16c4360 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=14872 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test/" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=f8d360 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=14873 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test/" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00
+arch=c000003e syscall=2 success=yes exit=3 a0=16ea360 a1=90800 a2=0 a3=0 items=1 ppid=15391 pid=14874 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts4 ses=583 comm="ls" exe="/bin/ls" key=(null)
+item=0 name="/root/test/" inode=528869 dev=08:01 mode=040755 ouid=0 ogid=0 rdev=00:00

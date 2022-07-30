@@ -1,0 +1,23 @@
+<fields>
+  <module>im_tcp</module>
+  <field>
+    <name>raw_event</name>
+    <type>string</type>
+    <description>
+      <en>
+	The received string.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>MessageSourceAddress</name>
+    <type>string</type>
+    <description>
+      <en>
+	The IP address of the remote host.
+      </en>
+    </description>
+  </field>
+
+</fields>

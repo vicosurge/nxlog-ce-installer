@@ -1,0 +1,24 @@
+#NOTWIN
+REMOVE: tmp/output
+REMOVETREE: tmp/xxx
+
+
+#this case im_pipe will create tmp/pipe file using mkfifo
+
+STARTDAEMON: modules/input/pipe/im_pipe.conf
+WRITEFILE: file:tmp/xxx/pipe test.log
+SLEEP: 1
+STOPDAEMON: modules/input/pipe/im_pipe.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+
+
+# tmp/pipe already exists
+
+STARTDAEMON: modules/input/pipe/im_pipe.conf
+WRITEFILE: file:tmp/xxx/pipe test.log
+SLEEP: 1
+STOPDAEMON: modules/input/pipe/im_pipe.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+REMOVETREE: tmp/xxx

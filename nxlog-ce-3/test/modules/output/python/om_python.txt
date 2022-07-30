@@ -1,0 +1,14 @@
+REMOVE: tmp/output
+
+#WIN
+#SETENVVAR: PYTHONHOME=/mingw64
+#END
+
+RUNPROCESSOR: modules/output/python/conf/om_python.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/output/python/conf/om_python-bad.conf
+COMPAREFILE: tmp/output modules/output/python/output/output-bad.txt
+REMOVE: tmp/output
+

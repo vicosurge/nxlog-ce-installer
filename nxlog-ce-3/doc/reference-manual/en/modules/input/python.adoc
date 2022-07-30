@@ -1,0 +1,91 @@
+:description: This topic describes how to collect log data with methods written in the Python language.
+:keywords: log data,python language,read data,python script,debug log,log level,logdata,event record,python code,event data,python method,generate event,syslog,syslog event,nxlog
+:module: im_python
+[[im_python]]
+[desc="Provides a Python API for generating log data"]
+==== Python (im_python)
+
+This module provides support for collecting log data with methods written in
+the link:https://www.python.org[Python] language. Currently,
+only versions 3.x of Python are supported.
+
+The file specified by the <<im_python_config_pythoncode,PythonCode>> directive
+should contain a `read_data()` method which is called by the _im_python_ module
+instance. See also the <<xm_python,xm_python>> and <<om_python,om_python>>
+modules.
+
+include::../see_modules_by_pkg.adoc[]
+
+The Python script should import the `nxlog` module, and will have access to
+the following classes and functions.
+
+include::../extension/python.adoc[tag=log_functions]
+
+[[im_python_api_module]]
+_class_ nxlog.Module:: This class will be instantiated by {productName} and
+  passed to the `read_data()` method in the script.
++
+logdata_new()::: This method returns a new LogData event object.
+set_read_timer(delay)::: This method sets a trigger for another read after a
+  specified _delay_ in seconds (float).
+
+_class_ nxlog.LogData:: This class represents a Logdata event object.
++
+delete_field(name)::: This method removes the field _name_ from the event
+  record.
+field_names()::: This method returns a list with the names of all the fields
+  currently in the event record.
+get_field(name)::: This method returns the value of the field _name_ in the
+  event.
+post()::: This method will submit the LogData event to {productName} for
+  processing by the next module in the route.
+set_field(name, value)::: This method sets the value of field _name_ to
+  _value_.
++
+module::: This attribute is set to the Module object associated with the
+  event.
+
+[[im_python_config]]
+===== Configuration
+
+The _im_python_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[im_python_config_pythoncode]]
+PythonCode:: This mandatory directive specifies a file containing Python
+  code. The _im_python_ instance will call a `read_data()` function which must
+  accept an <<im_python_api_module,nxlog.Module>> object as its only
+  argument.
+
+[[im_python_config_call]]
+Call:: This optional directive specifies the Python method to invoke. With
+  this directive, you can call only specific methods from your Python code.
+  If the directive is not specified, the default method `read_data` is invoked.
+
+[[im_python_config_examples]]
+===== Examples
+
+[[im_python_example1]]
+.Using im_python to generate event data
+====
+In this example, a Python script is used to read Syslog events from multiple
+log files bundled in tar archives, which may be compressed. The
+<<xm_syslog_proc_parse_syslog,parse_syslog()>> procedure is also used to parse
+the events.
+
+NOTE: To avoid re-reading archives, each one should be removed after reading
+      (see the comments in the script) or other similar functionality
+      implemented.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../../../test/modules/input/python/2_im_python.conf[lines=15..-1]
+----
+
+.2_python.py
+[source,python]
+----
+include::../../../../../test/modules/input/python/2_python.py[]
+----
+====

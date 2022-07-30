@@ -1,0 +1,8 @@
+# testgen: 0@Mon Dec 17 01:28:01 2018
+
+    ID ([0-9]*)
+    ODD (?<id>%{ID}[13579])
+    EVEN (?<id>%{ID}[24680])
+    TESTGEN (?<id>%{ID})@(?<date>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})
+    TESTGEN_ODD %{ODD}@(?<date>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})
+    TESTGEN_EVEN %{EVEN}@(?<date>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})

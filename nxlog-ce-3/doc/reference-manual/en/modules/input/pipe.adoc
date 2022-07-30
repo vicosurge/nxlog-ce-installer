@@ -1,0 +1,54 @@
+:module: im_pipe
+[[im_pipe]]
+[desc="Reads log messages from a named pipe"]
+==== Named Pipes (im_pipe)
+
+This module can be used to read log messages from named pipes on UNIX-like
+operating systems.
+
+[[im_pipe_config]]
+===== Configuration
+
+The _im_pipe_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[im_pipe_config_createdir]]
+CreateDir:: If set to TRUE, this optional boolean directive instructs
+  the module to create the directory where the <<im_pipe_config_pipe, Pipe>>
+  pipe file is located, if it does not already exist. The default is FALSE.
+
+[[im_pipe_config_pipe]]
+Pipe:: This mandatory directive specifies the name of the input pipe file.
+The module checks if the specified pipe file exists and creates it in case
+it does not.
+If the specified pipe file is not a named pipe, the module does not start.
+
+'''
+
+[[im_pipe_config_inputtype]]
+InputType:: This directive specifies the input data format. The default value
+is `LineBased`. See the <<config_inputtype,InputType>> directive in the list of
+common module directives.
+
+include::../../common/fileperms-group.adoc[]
+
+include::../../common/fileperms-perms.adoc[]
+
+include::../../common/fileperms-user.adoc[]
+
+===== Examples
+
+This example provides the {productName} configuration for processing messages
+from a named pipe on a UNIX-like operating system.
+
+.Forwarding Logs From a Pipe to a Remote Host
+====
+With this configuration, {productName} reads messages from a named
+pipe and forwards them via TCP. No additional processing is done.
+
+.nxlog.conf
+[source,log]
+----
+include::../../../config-examples/im_pipe.conf[tag=manual_include]
+----
+====
