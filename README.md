@@ -24,3 +24,8 @@ derivates and Alpine. RHEL based systems have not been
 added but will be in the future.
 
 The compilation has worked in x86_64 and ARM based systems.
+
+## Dockerfile
+A Dockerfile is provided which can be used for the purpose of
+testing NXLog CE without installing it directly on the
+system.
