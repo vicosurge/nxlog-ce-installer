@@ -30,6 +30,10 @@ elif [[ "$DISTRO" =~ Alpine ]]
 then
 	echo "This is an Alpine based distro, installing libraries"
 	apk add --no-cache make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file python3-dev
+elif [ -e /etc/rocky-release ]
+then
+	echo "This is a Rocky Linux based distro, installing libraries"
+	yum install gcc apr-devel pcre-devel openssl-devel expat-devel
 fi
 
 # Cover process of decompressing and compiling
