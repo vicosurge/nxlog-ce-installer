@@ -23,7 +23,9 @@ At the time this script is compatible with Debian, Ubuntu, its
 derivates and Alpine. RHEL based systems have not been
 added but will be in the future.
 
-The compilation has worked in x86_64 and ARM based systems.
+The compilation has worked in i386, SPARC, x86_64 and ARM based 
+systems, as long as the libraries required for the compulation 
+are available on your system this will go through.
 
 ## Dockerfile
 A Dockerfile is provided which can be used for the purpose of
