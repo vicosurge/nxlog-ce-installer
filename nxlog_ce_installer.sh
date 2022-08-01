@@ -25,22 +25,28 @@ NX_FOLDER=nxlog-ce-3
 if [[ "$DISTRO" =~ Debian|Ubuntu ]]
 then
 	echo "This is a Debian based distro, installing libraries"
-	apt install build-essential libapr1-dev libpcre3-dev libssl-dev libexpat1-dev
+	apt install build-essential libapr1-dev libpcre3-dev libssl-dev libexpat1-dev -y
 elif [[ "$DISTRO" =~ Alpine ]]
 then
 	echo "This is an Alpine based distro, installing libraries"
-	apk add --no-cache make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file python3-dev
+	apk add --no-cache make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file python3-dev -y
 elif [ -e /etc/rocky-release ]
+# While we get the right packages it does not work
+# due to what seems to be an automake conflict
 then
 	echo "This is a Rocky Linux based distro, installing libraries"
-	yum install gcc apr-devel pcre-devel openssl-devel expat-devel
+	yum install gcc apr-devel pcre-devel openssl-devel expat-devel make automake libtool -y
+elif [ -e /etc/centos-release ]
+then
+	echo "This is a CentOS based distro, installing libraries"
+	yum install gcc apr-devel pcre-devel openssl-devel expat-devel make automake libtool -y
 fi
 
 # Cover process of decompressing and compiling
 mkdir $NX_FOLDER
 tar -xf $NX_CE -C $NX_FOLDER --strip-components=1
 cd $NX_FOLDER
-./configure
+./autogen.sh
 make
 make install
 
