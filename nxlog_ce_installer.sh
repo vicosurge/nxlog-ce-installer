@@ -62,6 +62,7 @@ elif [[ "$DISTRO" =~ Alpine ]]
 then
 	apk del make g++ openssl-dev libdbi-dev expat-dev zlib-dev perl-dev
 elif [[ "$DISTRO" =~ Rocky|CentOS ]]
+then
 	yum remove apr-devel pcre-devel openssl-devel expat-devel
 fi
 echo "Configuration file can be found at /usr/local/etc/nxlog"
