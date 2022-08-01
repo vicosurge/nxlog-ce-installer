@@ -1,4 +1,0 @@
-if TRUE
-{
-    $success = TRUE;
-}

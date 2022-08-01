@@ -1,4 +1,0 @@
-TYPEMAP
-
-nx_logdata_t *		T_PTR
-

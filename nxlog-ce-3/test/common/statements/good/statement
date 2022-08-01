@@ -1,9 +1,0 @@
-;
-{}
-;;
-{};
-
-$raw_event = 'a';;
-if $raw_event =~ s/a// {};
-
-$success = TRUE;

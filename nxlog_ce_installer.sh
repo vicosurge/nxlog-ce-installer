@@ -34,10 +34,12 @@ elif [ -e /etc/rocky-release ]
 # While we get the right packages it does not work
 # due to what seems to be an automake conflict
 then
+	DISTRO=Rocky
 	echo "This is a Rocky Linux based distro, installing libraries"
 	yum install gcc apr-devel pcre-devel openssl-devel expat-devel make automake libtool -y
 elif [ -e /etc/centos-release ]
 then
+	DISTRO=CentOS
 	echo "This is a CentOS based distro, installing libraries"
 	yum install gcc apr-devel pcre-devel openssl-devel expat-devel make automake libtool -y
 fi
@@ -51,6 +53,7 @@ make
 make install
 
 # Cleaning up after installation
+cd ..
 rm -vR $NX_FOLDER
 if [[ "$DISTRO" =~ Debian|Ubuntu ]]
 then
@@ -58,5 +61,7 @@ then
 elif [[ "$DISTRO" =~ Alpine ]]
 then
 	apk del make g++ openssl-dev libdbi-dev expat-dev zlib-dev perl-dev
+elif [[ "$DISTRO" =~ Rocky|CentOS ]]
+	yum remove apr-devel pcre-devel openssl-devel expat-devel
 fi
 echo "Configuration file can be found at /usr/local/etc/nxlog"

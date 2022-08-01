@@ -1,7 +1,0 @@
-ERROR Trying to post logdata from non-input module
-ERROR Python ERROR: "'OutputModule' object has no attribute 'logdata_new'"
-ERROR #0 in run (...) at:
-ERROR #1 in write_data (...) at:
-ERROR Python ERROR: "'OutputModule' object has no attribute 'set_read_timer'"
-ERROR #0 in run (...) at:
-ERROR #1 in write_data (...) at:

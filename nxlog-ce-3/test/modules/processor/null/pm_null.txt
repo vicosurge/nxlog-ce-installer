@@ -1,5 +1,0 @@
-REMOVE: tmp/output
-REMOVE: tmp/selflog.txt
-RUNPROCESSOR: modules/processor/null/test.conf
-COMPAREFILE: tmp/output test.log
-REMOVE: tmp/output

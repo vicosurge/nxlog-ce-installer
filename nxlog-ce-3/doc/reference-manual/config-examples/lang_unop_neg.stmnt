@@ -1,3 +1,0 @@
-#FIXME
-#if $Message =~ /^(\d+) jobs removed from buffer$/ $Change = - integer($1);
-log_info("FIXME");

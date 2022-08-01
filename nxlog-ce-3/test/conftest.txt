@@ -1,3 +1,0 @@
-BADCONF: conf/core/*.conf
-BADCONF: conf/modules/*/*/*.conf
-

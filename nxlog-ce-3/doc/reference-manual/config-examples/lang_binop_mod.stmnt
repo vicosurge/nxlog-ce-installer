@@ -1,1 +1,0 @@
-if 3 % 2 == 1 log_info("three mod two is one");

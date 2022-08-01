@@ -1,4 +1,0 @@
-$success = TRUE;
-$tmp = now();
-$int = integer(now());
-if not defined $int $success = FALSE;

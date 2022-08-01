@@ -1,3 +1,0 @@
-$undef = undef;
-if $undef $success = FALSE;
-else $success = TRUE;

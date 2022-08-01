@@ -1,2 +1,0 @@
-if FALSE {} else $success = TRUE;
-

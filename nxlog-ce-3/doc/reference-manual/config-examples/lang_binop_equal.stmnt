@@ -1,1 +1,0 @@
-if $SeverityValue == 1 log_info("severity is one");

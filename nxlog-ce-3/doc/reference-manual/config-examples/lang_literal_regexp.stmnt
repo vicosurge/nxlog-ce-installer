@@ -1,1 +1,0 @@
-if $Message =~ /^Test (\S+)/ log_info("captured: " + $1);

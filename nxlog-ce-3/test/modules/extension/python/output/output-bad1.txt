@@ -1,5 +1,0 @@
-ERROR Trying to post logdata from non-input module
-ERROR Python ERROR: "'ExtensionModule' object has no attribute 'logdata_new'"
-ERROR #0 in bad_process2 (...) at:
-ERROR Python ERROR: "'ExtensionModule' object has no attribute 'set_read_timer'"
-ERROR #0 in bad_process3 (...) at:

@@ -1,6 +1,0 @@
-REMOVE: tmp/output
-STARTDAEMON: modules/output/udp/test.conf
-SLEEP: 2
-STOPDAEMON: modules/output/udp/test.conf
-TESTGENVERIFY: tmp/output 100
-REMOVE: tmp/output

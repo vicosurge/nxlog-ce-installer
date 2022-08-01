@@ -1,7 +1,0 @@
-HEADER msg=audit\(%{NUMBER:time}:%{NUMBER}\):
-CWD cwd="%{PATH:cwd}"
-AUD_CWD type=CWD %{HEADER}\s+%{CWD}
-AUD_TYPE (?<type>CWD|SYSCALL|PATH|CONFIG_CHANGE)
-
-AUDIT type=%{AUD_TYPE} %{HEADER} (?<body>.*?)$
-

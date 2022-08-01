@@ -1,1 +1,0 @@
-if $raw_event =~ /^Debug/ drop();
