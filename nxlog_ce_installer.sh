@@ -29,7 +29,7 @@ then
 elif [[ "$DISTRO" =~ Alpine ]]
 then
 	echo "This is an Alpine based distro, installing libraries"
-	apk add --no-cache make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file python3-dev
+	apk add --no-cache make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file python3-dev autoconf automake
 elif [ -e /etc/rocky-release ]
 # While we get the right packages it does not work
 # due to what seems to be an automake conflict
