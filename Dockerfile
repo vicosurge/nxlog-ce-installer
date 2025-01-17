@@ -11,6 +11,5 @@ LABEL name="nxlog-ce" \
 
 WORKDIR /tmp/nxlog
 COPY . .
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-RUN ["/bin/ash", "nxlog_ce_installer.sh"]
+RUN ["/bin/sh", "nxlog_ce_installer.sh"]
 ENTRYPOINT ["nxlog", "-f"]
