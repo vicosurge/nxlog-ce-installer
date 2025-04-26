@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.18
 MAINTAINER Vicente Munoz <vicente.mm.milchorena@gmail.com>
 
 LABEL name="nxlog-ce" \
