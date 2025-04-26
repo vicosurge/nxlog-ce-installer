@@ -4,8 +4,8 @@ MAINTAINER Vicente Munoz <vicente.mm.milchorena@gmail.com>
 LABEL name="nxlog-ce" \
       maintainer="vicente.mm.milchorena@gmail.com" \
       vendor="NXLog Ltd" \
-      version="CE 3.0.2272" \
-      release="1" \
+      version="CE 3.1.2319" \
+      release="2" \
       summary="NXLog is a modular, multi-threaded, high-performance log management solution" \
       description="NXLog is a modular, multi-threaded, high-performance log management solution"
 
