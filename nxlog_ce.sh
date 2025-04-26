@@ -1,7 +1,7 @@
 #!/bin/bash
-# Enhanced NXLog CE installation/uninstallation script (vibe coded with Claude 3.7)
+# Enhanced NXLog CE installation/uninstallation script
 # Purpose: Create required folders, compile NXLog CE, or uninstall it
-# Supports: Debian, Ubuntu, Alpine, Rocky Linux, CentOS
+# Supports: Debian, Ubuntu, Raspbian, Alpine, Rocky Linux, CentOS
 
 set -e  # Exit immediately if a command exits with non-zero status
 
@@ -14,6 +14,7 @@ NX_CONF_FILE="nxlog.conf"
 NX_CONF_SRC="configuration/${NX_CONF_FILE}"
 LOG_FILE="nxlog_script.log"
 OPERATION="install"  # Default operation
+DISABLE_PYTHON=false  # Default is to build with Python support
 
 # Function declarations
 log() {
@@ -48,6 +49,8 @@ show_help() {
     echo "  -k, --keep-deps  Keep development dependencies after installation"
     echo "  -b, --base-dir   Set base installation directory (default: /usr/local)"
     echo "  -f, --force      Force operation without confirmation (for uninstall)"
+    echo "  -d, --debug      Show debug information during execution"
+    echo "  -p, --no-python  Disable Python module support (fixes Python 3.11+ compatibility issues)"
     echo ""
     exit 0
 }
@@ -55,32 +58,76 @@ show_help() {
 install_deps() {
     log "Detecting distribution to install required dependencies..."
     
+    # Get distribution information
     if [ -f /etc/os-release ]; then
         . /etc/os-release
         DISTRO_NAME=$ID
+        DISTRO_VERSION=$VERSION_ID
     else
         DISTRO_NAME=$(cat /etc/issue | awk '{print $1}')
     fi
     
+    # Check for Raspberry Pi specifically
+    IS_RASPBERRY_PI=false
+    if [ -f /proc/device-tree/model ] && grep -q "Raspberry Pi" /proc/device-tree/model; then
+        IS_RASPBERRY_PI=true
+        log "Detected Raspberry Pi hardware"
+    fi
+    
+    if [ "${DEBUG}" = "true" ]; then
+        log "Debug: Detected distribution: ${DISTRO_NAME} ${DISTRO_VERSION}"
+        log "Debug: Is Raspberry Pi: ${IS_RASPBERRY_PI}"
+    fi
+    
     case "${DISTRO_NAME}" in
-        debian|ubuntu)
+        debian|ubuntu|raspbian)
             log "Detected Debian-based distribution."
+            
+            # More comprehensive dependencies for Debian-based systems, especially for Raspberry Pi
+            DEBIAN_DEPS="build-essential libapr1-dev libpcre3-dev libssl-dev libexpat1-dev autoconf automake libtool pkg-config libdbi-dev flex bison"
+            
+            # Add Python dev package if Python modules are enabled
+            if [ "${DISABLE_PYTHON}" != "true" ]; then
+                DEBIAN_DEPS="${DEBIAN_DEPS} python3-dev"
+            fi
+            
+            # Extra dependencies for Raspbian or Raspberry Pi running Debian/Ubuntu
+            if [ "${IS_RASPBERRY_PI}" = "true" ] || [ "${DISTRO_NAME}" = "raspbian" ]; then
+                DEBIAN_DEPS="${DEBIAN_DEPS} libtool-bin"
+                log "Adding extra dependencies for Raspberry Pi"
+            fi
+            
+            log "Installing dependencies: ${DEBIAN_DEPS}"
             apt-get update || error_exit "Failed to update package lists"
-            apt-get install -y build-essential libapr1-dev libpcre3-dev libssl-dev libexpat1-dev || \
-                error_exit "Failed to install dependencies"
-            REMOVE_CMD="apt-get remove -y build-essential libpcre3-dev libexpat1-dev"
+            apt-get install -y ${DEBIAN_DEPS} || error_exit "Failed to install dependencies"
+            
+            # Only remove the core build essentials when finished, leave libraries
+            REMOVE_CMD="apt-get remove -y build-essential autoconf automake libtool flex bison"
             ;;
         alpine)
             log "Detected Alpine Linux."
-            apk add --no-cache make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file python3-dev autoconf automake libtool || \
-                error_exit "Failed to install dependencies"
-            REMOVE_CMD="apk del make g++ openssl-dev libdbi-dev expat-dev zlib-dev perl-dev"
+            ALPINE_DEPS="make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file autoconf automake libtool"
+            
+            # Add Python dev package if Python modules are enabled
+            if [ "${DISABLE_PYTHON}" != "true" ]; then
+                ALPINE_DEPS="${ALPINE_DEPS} python3-dev"
+            fi
+            
+            apk add --no-cache ${ALPINE_DEPS} || error_exit "Failed to install dependencies"
+            REMOVE_CMD="apk del make g++ autoconf automake libtool"
             ;;
         rocky|centos|rhel|fedora)
             log "Detected RPM-based distribution."
-            yum install -y gcc apr-devel pcre-devel openssl-devel expat-devel make automake libtool || \
-                error_exit "Failed to install dependencies"
-            REMOVE_CMD="yum remove -y gcc apr-devel pcre-devel openssl-devel expat-devel make automake libtool"
+            
+            RHEL_DEPS="gcc apr-devel pcre-devel openssl-devel expat-devel make automake libtool pkgconfig libdbi-devel flex bison"
+            
+            # Add Python dev package if Python modules are enabled
+            if [ "${DISABLE_PYTHON}" != "true" ]; then
+                RHEL_DEPS="${RHEL_DEPS} python3-devel"
+            fi
+            
+            yum install -y ${RHEL_DEPS} || error_exit "Failed to install dependencies"
+            REMOVE_CMD="yum remove -y gcc automake libtool flex bison"
             ;;
         *)
             error_exit "Unsupported distribution: ${DISTRO_NAME}. Please install dependencies manually."
@@ -193,6 +240,11 @@ uninstall_nxlog() {
         rm -rf "${NX_BASE}/lib/nxlog" || log "Warning: Failed to remove ${NX_BASE}/lib/nxlog"
     fi
     
+    # Also check libexec directory (where modules are installed)
+    if [ -d "${NX_BASE}/libexec/nxlog" ]; then
+        rm -rf "${NX_BASE}/libexec/nxlog" || log "Warning: Failed to remove ${NX_BASE}/libexec/nxlog"
+    fi
+    
     # Remove systemd service if exists
     if [ -f "/etc/systemd/system/nxlog.service" ]; then
         rm -f "/etc/systemd/system/nxlog.service" || log "Warning: Failed to remove systemd service file"
@@ -254,9 +306,70 @@ install_nxlog() {
     
     log "Compiling NXLog CE ${NX_VERSION}..."
     cd "${NX_FOLDER}" || error_exit "Failed to change to build directory"
-    ./autogen.sh || error_exit "Failed to run autogen.sh"
-    ./configure --prefix="${NX_BASE}" || error_exit "Failed to configure build"
+    
+    # Check if required tools are available
+    log "Checking for required build tools..."
+    for TOOL in autoconf automake make gcc; do
+        if ! command -v ${TOOL} >/dev/null 2>&1; then
+            error_exit "Required build tool ${TOOL} is missing. Please install it and try again."
+        fi
+    done
+    
+    # Special handling for libtoolize vs libtool
+    if ! command -v libtoolize >/dev/null 2>&1; then
+        if command -v libtool >/dev/null 2>&1; then
+            log "Using libtool instead of libtoolize..."
+            # Some systems use libtool instead of libtoolize
+            if grep -q "libtoolize" ./autogen.sh; then
+                log "Patching autogen.sh to use libtool instead of libtoolize..."
+                sed -i 's/libtoolize/libtool/g' ./autogen.sh
+            fi
+        else
+            error_exit "Neither libtoolize nor libtool is available. Please install libtool package."
+        fi
+    fi
+    
+    # Special handling for autogen.sh
+    log "Running autogen.sh..."
+    chmod +x ./autogen.sh
+    if [ "${DEBUG}" = "true" ]; then
+        ./autogen.sh || error_exit "Failed to run autogen.sh"
+    else
+        ./autogen.sh >/dev/null 2>&1 || error_exit "Failed to run autogen.sh"
+    fi
+    
+    # Configure with or without Python support
+    log "Configuring build..."
+    CONFIGURE_OPTS="--prefix=${NX_BASE}"
+    
+    if [ "${DISABLE_PYTHON}" = "true" ]; then
+        log "Disabling Python module support as requested..."
+        CONFIGURE_OPTS="${CONFIGURE_OPTS} --disable-python-module"
+    else
+        # Check Python version
+        PY_VER=$(python3 --version 2>&1 | cut -d' ' -f2 | cut -d'.' -f1-2)
+        log "Detected Python version: ${PY_VER}"
+        
+        # If Python 3.11 or higher, disable Python module
+        if [ "$(echo "${PY_VER}" | sed 's/\.//g')" -ge "311" ]; then
+            log "Detected Python 3.11 or newer, which is incompatible with NXLog Python module."
+            log "Automatically disabling Python module support to fix compilation errors."
+            CONFIGURE_OPTS="${CONFIGURE_OPTS} --disable-python-module"
+        fi
+    fi
+    
+    # Print configuration options when debug is enabled
+    if [ "${DEBUG}" = "true" ]; then
+        log "Configure options: ${CONFIGURE_OPTS}"
+    fi
+    
+    # Run configure with appropriate options
+    ./configure ${CONFIGURE_OPTS} || error_exit "Failed to configure build"
+    
+    log "Compiling source code..."
     make || error_exit "Failed to compile"
+    
+    log "Installing NXLog..."
     make install || error_exit "Failed to install"
     
     # Return to original directory
@@ -294,11 +407,18 @@ EOF
     echo "NXLog CE ${NX_VERSION} has been installed successfully."
     echo "To start NXLog service, run: systemctl start nxlog  (if systemd is available)"
     echo "Or run directly: ${NX_BIN}/nxlog -f"
+    
+    if [ "${DISABLE_PYTHON}" = "true" ] || [ "$(echo "${PY_VER}" | sed 's/\.//g')" -ge "311" ]; then
+        echo ""
+        echo "NOTE: Python module support was disabled during compilation."
+        echo "      Python-based input, processor, and output modules will not be available."
+    fi
 }
 
 # Parse command line arguments
 KEEP_DEPS=false
 FORCE=false
+DEBUG=false
 while [ "$#" -gt 0 ]; do
     case "$1" in
         -h|--help)
@@ -325,6 +445,14 @@ while [ "$#" -gt 0 ]; do
             ;;
         -f|--force)
             FORCE=true
+            shift
+            ;;
+        -d|--debug)
+            DEBUG=true
+            shift
+            ;;
+        -p|--no-python)
+            DISABLE_PYTHON=true
             shift
             ;;
         *)
