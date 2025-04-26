@@ -106,8 +106,8 @@ install_deps() {
             ;;
         alpine)
             log "Detected Alpine Linux."
-            ALPINE_DEPS="build-base gcc make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev flex bison autoconf automake libtool libc-dev linux-headers gcompat"
-            
+            #ALPINE_DEPS="build-base gcc make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev flex bison autoconf automake libtool libc-dev linux-headers gcompat"
+            ALPINE_DEPS="make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file python3-dev autoconf automake libtool"
             # Add Python dev package if Python modules are enabled
             if [ "${DISABLE_PYTHON}" != "true" ]; then
                 ALPINE_DEPS="${ALPINE_DEPS} python3-dev"
