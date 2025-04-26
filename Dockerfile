@@ -11,5 +11,6 @@ LABEL name="nxlog-ce" \
 
 WORKDIR /tmp/nxlog
 COPY . .
+RUN apk add --no-cache bash
 RUN ["/bin/bash", "nxlog_ce.sh"]
 ENTRYPOINT ["nxlog", "-f"]
