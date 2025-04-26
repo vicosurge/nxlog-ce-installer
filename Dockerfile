@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM debian:latest
 MAINTAINER Vicente Munoz <vicente.mm.milchorena@gmail.com>
 
 LABEL name="nxlog-ce" \
