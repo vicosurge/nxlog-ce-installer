@@ -332,7 +332,7 @@ install_nxlog() {
     # Handle Python dependency requirement
     log "Running Python fix script"
 
-    SOURCE_FILE="nxlog-ce-build/src/modules/extension/python/libnxpython.c"
+    SOURCE_FILE="src/modules/extension/python/libnxpython.c"
 
     # Get Python version
     PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
