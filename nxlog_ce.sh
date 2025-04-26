@@ -106,7 +106,7 @@ install_deps() {
             ;;
         alpine)
             log "Detected Alpine Linux."
-            ALPINE_DEPS="make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file autoconf automake libtool"
+            ALPINE_DEPS="make g++ tar apr-dev openssl-dev pcre-dev libdbi-dev openssl expat-dev zlib-dev perl perl-dev file autoconf automake libtool libc-dev"
             
             # Add Python dev package if Python modules are enabled
             if [ "${DISABLE_PYTHON}" != "true" ]; then
