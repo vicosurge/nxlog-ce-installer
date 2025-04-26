@@ -11,5 +11,5 @@ LABEL name="nxlog-ce" \
 
 WORKDIR /tmp/nxlog
 COPY . .
-RUN ["/bin/sh", "nxlog_ce.sh"]
+RUN ["/bin/bash", "nxlog_ce.sh"]
 ENTRYPOINT ["nxlog", "-f"]
