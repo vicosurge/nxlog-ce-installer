@@ -330,6 +330,10 @@ install_nxlog() {
     fi
     
     # Special handling for autogen.sh
+    log "Running Python fix script..."
+    chmod +x ../nxlog_python_fix.sh
+    ../nxlog_python_fix.sh
+
     log "Running autogen.sh..."
     chmod +x ./autogen.sh
     if [ "${DEBUG}" = "true" ]; then

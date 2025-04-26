@@ -3,7 +3,7 @@
 # This fix was taken from the following Gitlab issue
 # https://gitlab.com/nxlog-public/nxlog-ce/-/issues/?sort=created_date&state=all&search=python&first_page_size=20&show=eyJpaWQiOiIzOCIsImZ1bGxfcGF0aCI6Im54bG9nLXB1YmxpYy9ueGxvZy1jZSIsImlkIjoxNTIxOTQ0OTV9
 
-SOURCE_FILE="nxlog-ce-build/src/modules/extension/python/libnxpython.c"
+SOURCE_FILE="src/modules/extension/python/libnxpython.c"
 
 # Get Python version
 PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
